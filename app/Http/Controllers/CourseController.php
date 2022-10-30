@@ -16,7 +16,7 @@ class CourseController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'course_name' => ['min:2', 'max:30', 'string'],
+            'course_name' => ['min:2', 'max:30', 'string', 'required'],
             'course_price' => ['min:0', 'max:9999', 'numberic' , 'required']
         ]);
 
@@ -29,17 +29,19 @@ class CourseController extends Controller
 
     public function update(Request $request){
         $request->validate([
-            'course_name' => ['min:2', 'max:30', 'string'],
-            'course_price' => ['min:0', 'max:9999', 'numberic' , 'required']
+            'course_id' => ['required'],
+            'course_name' => ['min:2', 'max:30', 'string', 'required'],
+            'course_price' => ['min:0', 'max:9999', 'numberic', 'required']
         ]);
 
         $dbConnector = new DBConnector();
+        if(!$request->has('course_id'))
+            throw new \Exception("No course_id provided.");
         try {
             $course_id = $dbConnector->getCourseById($request->course_id);
         } catch (\Exception) {
             throw new \Exception("This course is not exist.");
         }
-
         $new_course_name = $request->course_name;
         $new_course_price = $request->course_price;
 
