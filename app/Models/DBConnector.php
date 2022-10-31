@@ -41,7 +41,35 @@ class DBConnector extends Model
         return DB::insert("INSERT INTO MATERIAL(material_name, quantit, minimum_value) VALUES({$material_name},{$quantity},{$minimum_value})");
     }
 
-    public function updateMaterial($material_id, $material_name, $qutitty, $minimum_value){
+    public function updateMaterial($material_id, $material_name, $quantity, $minimum_value){
         return DB::update("UPDATE MATERIAL SET material_name = '{$material_name}', quantity = {$quantity}, minimum_value = {$minimum_value} WHERE material_id = {$material_id}");
     }
+
+    public function getMaterialById($id){
+        $materials = DB::select('SELECT material_id FROM MATERIAL WHERE material_id = ' . $id);
+        $materials = json_decode(json_encode($materials), true);
+        return implode("",$materials[0]);
+    }
+
+    public function getTool(){
+        $tools = DB::select("SELECT * FROM TOOL");
+        return json_decode(json_encode($tools), true);
+    }
+
+    public function addTool($tool_name){
+        return DB::insert("INSERT INTO TOOL(tool_name) VALUES({$tool_name})");
+    }
+
+    public function updateTool($tool_id, $tool_name){
+        return DB::update("UPDATE TOOL SET tool_name={$tool_name} WHERE tool_id = $tool_id");
+    }
+
+    public function getToolById($id){
+        $tools = DB::select('SELECT tool_id FROM TOOL WHERE tool_id = ' . $id);
+        $tools = json_decode(json_encode($tools), true);
+        return implode("",$tools[0]);
+    }
+
+    
+
 }
