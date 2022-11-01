@@ -22,3 +22,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::resource('course', \App\Http\Controllers\Resource\CourseController::class);
+Route::resource('customer', \App\Http\Controllers\Resource\CustomerController::class);
+Route::resource('employee', \App\Http\Controllers\Resource\EmployeeController::class);
+Route::resource('tool', \App\Http\Controllers\Resource\ToolController::class);
+Route::resource('material', \App\Http\Controllers\Resource\MaterialController::class);
+Route::resource('service_order', \App\Http\Controllers\Resource\ServiceOrderController::class);
