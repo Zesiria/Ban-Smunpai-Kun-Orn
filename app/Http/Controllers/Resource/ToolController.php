@@ -88,13 +88,15 @@ class ToolController extends Controller
 
         $dbConnector = new DBConnector();
 
-        try {
-            $tool_id = $dbConnector->getToolById($request->tool_id);
-        } catch (\Exception) {
-            throw new \Exception("This tool is not exist.");
+        $tool_id = $request->tool_id;
+        $new_tool_name = $request->tool_name;
+
+        if($tool_id != $id){
+            return response()->json([
+                "success" => false
+            ]);
         }
 
-        $new_tool_name = $request->tool_name;
 
         $dbConnector->updateTool($tool_id, $new_tool_name);
     }
