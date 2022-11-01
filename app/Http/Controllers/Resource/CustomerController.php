@@ -101,6 +101,12 @@ class CustomerController extends Controller
         $password = $request->password;
         $phone_number = $request->phone_number;
 
+        if($customer_id != $id){
+            return response()->json([
+                "success" => false
+            ]);
+        }
+
         $dbConnector = new DBConnector();
         $dbConnector->updateCustomer($customer_id, $customer_name, $email, $password, $phone_number);
 

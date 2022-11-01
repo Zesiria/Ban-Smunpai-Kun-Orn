@@ -93,10 +93,18 @@ class CourseController extends Controller
         if(!$request->has('course_id') || $request->course_id != $id)
             throw new \Exception("No course_id provided.");
 
+        $course_id = $request->course_id;
         $new_course_name = $request->course_name;
         $new_course_price = $request->course_price;
 
-        $dbConnector->updateCourse($id, $new_course_name, $new_course_price);
+        if($course_id != $id){
+            return response()->json([
+                "success" => false
+            ]);
+        }
+
+
+        $dbConnector->updateCourse($course_id, $new_course_name, $new_course_price);
     }
 
     /**
