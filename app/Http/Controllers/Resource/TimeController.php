@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Resource;
 
 use App\Http\Controllers\Controller;
+use App\Models\DBConnector;
 use Illuminate\Http\Request;
 
 class TimeController extends Controller
@@ -14,7 +15,8 @@ class TimeController extends Controller
      */
     public function index()
     {
-        //
+        $dbConnector = new DBConnector();
+        return $dbConnector->getTime();
     }
 
     /**
@@ -35,7 +37,14 @@ class TimeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'date_time' => ['required','date_format:Y-m-d H:i:s']
+        ]);
+
+        $date_time = $request->date_time;
+
+        $dbConnector = new DBConnector();
+        $dbConnector->addTime($date_time);
     }
 
     /**

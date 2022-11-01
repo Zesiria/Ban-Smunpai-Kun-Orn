@@ -63,7 +63,7 @@ class MaterialController extends Controller
     public function show($id)
     {
         $dbConnector = new DBConnector();
-        $materials = $dbConnector->getCourse();
+        $materials = $dbConnector->getMaterial();
 
         return $materials[$id];
     }
@@ -96,17 +96,18 @@ class MaterialController extends Controller
         ]);
 
         $dbConnector = new DBConnector();
-        if(!$request->has('material_id'))
-            throw new \Exception("No material_id provided.");
-        try {
-            $material_id = $dbConnector->getMaterialById($request->material_id);
-        } catch (\Exception) {
-            throw new \Exception("This course is not exist.");
-        }
 
+        $material_id = $request->material_id;
         $new_material_name = $request->material_name;
         $new_quantity = $request->quantity;
         $new_minimum_value = $request->minimum_value;
+
+        if($material_id != $id){
+            return response()->json([
+                "success" => false
+            ]);
+        }
+
 
         $dbConnector->updateMaterial($material_id, $new_material_name, $new_quantity, $new_minimum_value);
 
