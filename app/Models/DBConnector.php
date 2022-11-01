@@ -120,7 +120,7 @@ class DBConnector extends Model
     }
 
     public function updateServiceOrder($service_order_id, $customer_id, $course_id, $employee_id, $price, $date_time){
-        return DB::update("UPDATE TABLE SERVICE_ORDER SET customer_id = {$customer_id}, course_id = {$course_id},
+        return DB::update("UPDATE SERVICE_ORDER SET customer_id = {$customer_id}, course_id = {$course_id},
                                 employee_id = {$employee_id}, price ={$price}, date_time = '{$date_time}')
                                 WHERE service_order_id = $service_order_id");
     }
@@ -131,54 +131,61 @@ class DBConnector extends Model
         return json_decode(json_encode($queues),1);
     }
 
-    public function addQueue(){
-        //todo implement
+    public function addQueue($employee_id, $date_time){
+        return DB::insert("INSERT INTO QUEUE(employee_id, date_time) VALUES
+                                ({$employee_id},'{$date_time}')");
     }
 
-    public function updateQueue(){
-        //todo implement
+    public function updateQueue($employee_id, $date_time, $is_cancel){
+        return DB::insert("UPDATE QUEUE SET
+                                is_cancel = {$is_cancel}
+                                WHERE employee_id = {$employee_id} AND date_time = {$date_time}");
     }
 
     public function getEmployeeUsed(){
         $employeeUses = DB::select("SELECT * FROM EMPLOYEE_USED");
         return json_decode(json_encode($employeeUses),1);
     }
-    public function addEmployeeUsed(){
-        //todo implement
+
+    public function addEmployeeUsed($employee_id, $material_id, $quantity){
+        return DB::insert("INSERT INTO EMPLOYEE_USED(employee_id, material_id, quantity) VALUES
+                                ({$employee_id},{$material_id},{$quantity})");
     }
-    public function updateEmployeeUsed(){
-        //todo implement
+
+    public function updateEmployeeUsed($employee_id, $material_id, $quantity){
+        return DB::update("UPDATE EMPLOYEE_USED SET
+                                        quantity = {$quantity} WHERE
+                                                     employee_id = {$employee_id} AND material_id = {$material_id}");
     }
 
     public function getEmployeeRequired(){
         $employeeRequires = DB::select("SELECT * FROM EMPLOYEE_REQUIRED");
         return json_decode(json_encode($employeeRequires),1);
     }
-    public function addEmployeeRequired(){
-        //todo implement
-    }
-    public function updateEmployeeRequired(){
-        //todo implement
+    public function addEmployeeRequired($employee_id, $tool_id){
+        return DB::insert("INSERT INTO EMPLOYEE_REQUIRED(employee_id, tool_id) VALUES
+                                ({$employee_id},{$tool_id})");
     }
 
     public function getCourseUsed(){
         $courseUses = DB::select("SELECT * FROM COURSE_USED");
         return json_decode(json_encode($courseUses),1);
     }
-    public function addCourseUsed(){
-
+    public function addCourseUsed($course_id, $material_id, $quantity){
+        return DB::insert("INSERT INTO COURSE_USED(course_id, material_id, quantity) VALUES
+                                ({$course_id},{$material_id},{$quantity})");
     }
-    public function updateCourseUsed(){
-        //todo implement
+    public function updateCourseUsed($course_id, $material_id, $quantity){
+        return DB::update("UPDATE COURSE_USED SET
+                                        quantity = {$quantity} WHERE
+                                                     course_id = {$course_id} AND material_id = {$material_id}");
     }
     public function getCourseRequired(){
         $courseRequires = DB::select("SELECT * FROM COURSE_REQUIRED");
         return json_decode(json_encode($courseRequires),1);
     }
-    public function addCourseRequired(){
-        //todo implement
-    }
-    public function updateCourseRequired(){
-        //todo implement
+    public function addCourseRequired($course_id, $tool_id){
+        return DB::insert("INSERT INTO COURSE_REQUIRED(course_id, tool_id) VALUES
+                                ({$course_id},{$tool_id})");
     }
 }
