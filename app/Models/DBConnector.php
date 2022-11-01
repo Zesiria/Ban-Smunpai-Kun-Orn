@@ -106,8 +106,7 @@ class DBConnector extends Model
     }
 
     public function addTime($date_time){
-        $dbConnector = new DBConnector();
-        return $dbConnector::insert("INSERT INTO TIME(date_time) VALUE('{$date_time}')");
+        return DB::insert("INSERT INTO TIME(date_time) VALUE('{$date_time}')");
     }
 
     public function getServiceOrder(){
@@ -115,12 +114,15 @@ class DBConnector extends Model
         return json_decode(json_encode($serviceOrders),1);
     }
 
-    public function addServiceOrder(){
-        //todo implement
+    public function addServiceOrder($customer_id, $course_id, $employee_id, $price, $date_time){
+        return DB::insert("INSERT INTO SERVICE_ORDER(customer_id, course_id, employee_id, price, date_time)
+        VALUES({$customer_id},{$course_id},{$employee_id},{$price},'{$date_time}')");
     }
 
-    public function updateServiceOrder(){
-        //todo implement
+    public function updateServiceOrder($service_order_id, $customer_id, $course_id, $employee_id, $price, $date_time){
+        return DB::update("UPDATE TABLE SERVICE_ORDER SET customer_id = {$customer_id}, course_id = {$course_id},
+                                employee_id = {$employee_id}, price ={$price}, date_time = '{$date_time}')
+                                WHERE service_order_id = $service_order_id");
     }
 
     // Pivot Table
