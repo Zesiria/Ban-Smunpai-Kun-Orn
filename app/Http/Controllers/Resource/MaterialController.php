@@ -63,7 +63,7 @@ class MaterialController extends Controller
     public function show($id)
     {
         $dbConnector = new DBConnector();
-        $materials = $dbConnector->getCourse();
+        $materials = $dbConnector->getMaterial();
 
         return $materials[$id];
     }

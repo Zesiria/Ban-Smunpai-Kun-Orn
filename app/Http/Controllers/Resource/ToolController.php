@@ -16,7 +16,7 @@ class ToolController extends Controller
     public function index()
     {
         $dbConnector = new DBConnector();
-        return $dbConnector->getCourse();
+        return $dbConnector->getTool();
     }
 
     /**
@@ -56,7 +56,7 @@ class ToolController extends Controller
     public function show($id)
     {
         $dbConnector = new DBConnector();
-        $tools = $dbConnector->getCourse();
+        $tools = $dbConnector->getTool();
 
         return $tools[$id];
     }
