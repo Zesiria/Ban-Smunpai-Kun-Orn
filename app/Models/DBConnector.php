@@ -105,12 +105,9 @@ class DBConnector extends Model
         return json_decode(json_encode($times),1);
     }
 
-    public function addTime(){
-        //todo implement
-    }
-
-    public function updateTime(){
-        //todo implement
+    public function addTime($date_time){
+        $dbConnector = new DBConnector();
+        return $dbConnector::insert("INSERT INTO TIME(date_time) VALUE('{$date_time}')");
     }
 
     public function getServiceOrder(){
