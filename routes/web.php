@@ -17,6 +17,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/service', function () {
+    return view('service');
+});
+
+Route::get('/order', function () {
+    return view('order');
+});
+
+Route::get('/payment', function () {
+    return view('payment');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

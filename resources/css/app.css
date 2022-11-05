@@ -1,3 +1,117 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.serviceImage {
+    border-radius: 20px;
+}
+
+.navBar {
+    background-color: #617320;
+    padding: 2%;
+}
+
+.backgroundHome {
+    background-color: #F9F9F9;
+}
+
+.order {
+    background-color: #617320;
+    border-radius: 20px;
+}
+
+.payment {
+    background-color: #617320;
+    border-radius: 20px;
+}
+
+.paymentIn {
+    background-color: white;
+    border-radius: 20px;
+}
+
+.submitBtn {
+    background-color: #D9B18F;
+    border-radius: 5px;
+}
+
+.submitPayBtn {
+    background-color: #D9B18F;
+    border-radius: 5px;
+}
+
+.cancelPayBtn {
+    background-color: white;
+    border-radius: 5px;
+}
+/* Month header */
+.month {
+  padding: 70px 25px;
+  width: 100%;
+  background: #F9F9F9;
+  text-align: center;
+}
+
+/* Month list */
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+/* Next button */
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color:#ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+}
+
+/* Days (1-31) */
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #777;
+}
+
+/* Highlight the "current" day */
+.days li .active {
+  padding: 5px;
+  background: #1abc9c;
+  color: white !important
+}
