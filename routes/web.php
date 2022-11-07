@@ -45,6 +45,10 @@ Route::get('/payment', function () {
     return view('payment');
 });
 
+Route::get('/edittool', function () {
+    return view('edittool');
+});
+
 //Route::get('/login', function () {
 //    return route('customer-login.create');
 //});

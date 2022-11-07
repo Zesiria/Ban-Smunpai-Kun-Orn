@@ -1,22 +1,22 @@
 @extends('layouts.main')
 
 @section('content')
-    <div>
+    {{-- <div>
         <select name="type" id="type">
-            <option $value="null">เลือกประเภท</option>
-            <option $value="employee">พนักงาน</option>
-            <option $value="tool">อุปกรณ์</option>
-            <option $value="material">วัตถุดิบ</option>
-            <option $value="course">บริการ</option>
+            <option value="null">เลือกประเภท</option>
+            <option value="employee">พนักงาน</option>
+            <option value="tool">อุปกรณ์</option>
+            <option value="material">วัตถุดิบ</option>
+            <option value="course">บริการ</option>
           </select>
-        @if($value == "employee")
+        @if($type == "employee")
             @include('layouts.addemployee')
-        @elseif($value == "tool")
+        @elseif($type == "tool")
             @include('layouts.addtool')
-        @elseif($value == "material")
+        @elseif($type == "material")
             @include('layouts.addmaterial')
         @else
             @include('layouts.addcourse')
         @endif
-    </div>
+    </div> --}}
 @endsection 
