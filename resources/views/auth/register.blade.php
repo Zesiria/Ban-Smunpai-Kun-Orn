@@ -6,7 +6,7 @@
             </a>
         </x-slot>
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('customer-register.store') }}">
             @csrf
 
             <!-- Name -->
@@ -48,6 +48,17 @@
                                 name="password_confirmation" required />
 
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            </div>
+
+            <!-- Phone Number -->
+            <div class="mt-4">
+                <x-input-label for="phone_number" :value="__('เบอร์โทรศัพท์')" />
+
+                <x-text-input id="phone_number" class="block mt-1 w-full"
+                              type="text"
+                              name="phone_number" required />
+
+                <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
             </div>
 
             <div class="flex items-center justify-end mt-4">

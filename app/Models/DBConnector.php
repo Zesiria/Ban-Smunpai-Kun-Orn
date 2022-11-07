@@ -76,7 +76,10 @@ class DBConnector extends Model
     }
 
     public function addCustomer($customer_name, $email, $password, $phone_number){
-        return DB::insert("INSERT INTO CUSTOMER(customer_name, email, password, phone_number) VALUES('{$customer_name}','{$email}','{$password}','{$phone_number}')");
+        if(DB::insert("INSERT INTO CUSTOMER(customer_name, email, password, phone_number) VALUES('{$customer_name}','{$email}','{$password}','{$phone_number}')")){
+            return Customer::all()->where('email', $email)->first();
+        }
+        return false;
     }
 
     public function updateCustomer($customer_id, $customer_name, $email, $password, $phone_number){
