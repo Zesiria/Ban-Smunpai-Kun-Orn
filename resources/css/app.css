@@ -2,18 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+.backColor {
+  background-color: #D2D79F;
+}
+
+.imgPost {
+  border-radius: 20px;
+}
+
+.bookNowButton {
+  background-color: #42855B;
+  border-radius: 10px;
+}
+
+.rectangle {
+  height: 140px;
+  width: 100%;
+  background-color: #90B77D;
+  border-radius: 20px;
+  bottom: 0;
+  margin-bottom: 30px;
+  z-index: 0;
+  position: relative;
+}
+
+.rectangleLR {
+  height: 400px;
+  width: 180px;
+  background-color: #42855B;
+  border-radius: 20px;
+}
+
+.rectangleBox {
+  height: 300px;
+  width: 180px;
+  background-color: #42855B;
+  border-radius: 20px;
+}
 
 .serviceImage {
     border-radius: 20px;
 }
 
 .navBar {
-    background-color: #617320;
+    background-color: transparent;
     padding: 2%;
 }
 
 .backgroundHome {
-    background-color: #F9F9F9;
+    background-color: #D2D79F;
 }
 
 .order {

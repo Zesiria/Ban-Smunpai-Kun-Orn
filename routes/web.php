@@ -29,12 +29,16 @@ Route::get('/order', function () {
     return view('order');
 });
 
-Route::get('/employee', function () {
-    return view('employee');
+Route::get('/employees', function () {
+    return view('employees');
 });
 
 Route::get('/payment', function () {
     return view('payment');
+});
+
+Route::get('/materials', function () {
+    return view('materials');
 });
 
 Route::get('/login', function () {
