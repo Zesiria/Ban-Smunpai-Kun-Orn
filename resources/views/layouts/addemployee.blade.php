@@ -18,9 +18,5 @@
 
         <button type="submit">เพิ่มพนักงาน</button>
     </form>
-    @if($errors)
-        @foreach($errors as $error)
-            <h3>{{ $error['message'] }}</h3>
-        @endforeach
-    @endif
+    {{ $errors->first() }}
 </div>

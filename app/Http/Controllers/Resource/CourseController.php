@@ -40,14 +40,18 @@ class CourseController extends Controller
     {
         $request->validate([
             'course_name' => ['min:2', 'max:30', 'string', 'required'],
-            'course_price' => ['min:0', 'max:9999', 'numberic' , 'required']
+            'course_description' => ['max:255','string','required'],
+            'course_price' => ['min:0', 'max:9999', 'numeric' , 'required']
         ]);
 
         $course_name = $request->course_name;
+        $course_description = $request->course_description;
         $course_price = $request->course_price;
 
         $course = new DBConnector();
-        $course->addCourse($course_name, $course_price);
+        if($course->addCourse($course_name, $course_description, $course_price)){
+            return redirect('/course');
+        }
     }
 
     /**

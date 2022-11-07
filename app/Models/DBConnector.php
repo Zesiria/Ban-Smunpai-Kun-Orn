@@ -15,9 +15,9 @@ class DBConnector extends Model
         return json_decode(json_encode($courses), true);
     }
 
-    public function addCourse($course_name, $course_price){
-        return DB::insert("INSERT INTO COURSE(course_name, course_price) VALUES(
-        '{$course_name}',{$course_price})");
+    public function addCourse($course_name, $course_description, $course_price){
+        return DB::insert("INSERT INTO COURSE(course_name, course_description, course_price) VALUES(
+        '{$course_name}','{$course_description}',{$course_price})");
     }
 
     public function getCourseById($id){

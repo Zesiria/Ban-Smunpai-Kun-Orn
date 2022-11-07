@@ -1,9 +1,12 @@
 <div>
-    <div class="flex">
-        <h1>Tool Name :</h1>
-        <input type="text">
-    </div>
-    <div class="flex">
-        <h1>Type :</h1>
-        <input type="text">
+    <form method="POST" action="{{ route('tool.store')  }}">
+        @csrf
+        <div class="flex">
+            <h1>Name :</h1>
+            <input type="text" id="tool_name" name="tool_name">
+        </div>
+
+        <button type="submit">เพิ่มวัตถุดิบ</button>
+    </form>
+    {{ $errors->first() }}
 </div>

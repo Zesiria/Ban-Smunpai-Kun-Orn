@@ -41,10 +41,12 @@ class ToolController extends Controller
             'tool_name' => ['min:2', 'max:30', 'string', 'required']
         ]);
 
-        $tool_name = $request->course_name;
+        $tool_name = $request->tool_name;
 
         $dbConnector = new DBConnector();
-        $dbConnector->addTool($tool_name);
+        if($dbConnector->addTool($tool_name)){
+            return redirect( route('tool.index'));
+        }
     }
 
     /**

@@ -39,8 +39,8 @@ class MaterialController extends Controller
     {
         $request->validate([
             'material_name' => ['min:2', 'max:30', 'string', 'required'],
-            'quantity' => ['min:0', 'max:999', 'numberic' , 'required'],
-            'minimum_value' => ['min:0', 'max:999', 'numberic']
+            'quantity' => ['min:0', 'max:999', 'numeric' , 'required'],
+            'minimum_value' => ['min:0', 'max:999', 'numeric']
         ]);
 
         $material_name = $request->material_name;
@@ -51,7 +51,9 @@ class MaterialController extends Controller
             $minimum_value = 0;
 
         $dbConnector = new DBConnector();
-        $dbConnector->addMaterial($material_name, $quantity, $minimum_value);
+        if($dbConnector->addMaterial($material_name, $quantity, $minimum_value)){
+            return redirect('/material');
+        }
     }
 
     /**
