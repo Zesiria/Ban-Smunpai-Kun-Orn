@@ -30,7 +30,8 @@ class AddAllTableCommand extends Command
     {
         DB::statement("CREATE TABLE COURSE (
             course_id INT(4) AUTO_INCREMENT,
-              course_name VARCHAR(30) NOT NULL,
+            course_name VARCHAR(30) NOT NULL,
+            course_description VARCHAR(256) NOT NULL,
             course_price INT(4) NOT NULL,
 
             PRIMARY KEY(course_id),

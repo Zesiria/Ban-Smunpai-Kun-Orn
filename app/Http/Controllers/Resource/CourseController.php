@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Resource;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\DBConnector;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $course = new DBConnector();
-        return $course->getCourse();
+        $connector = new DBConnector();
+        return view('service', ['courses' => $connector->getCourse()]);
     }
 
     /**

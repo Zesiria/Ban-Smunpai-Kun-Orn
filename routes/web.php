@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
 
 Route::get('/home', function () {
@@ -22,7 +22,7 @@ Route::get('/home', function () {
 });
 
 Route::get('/service', function () {
-    return view('service');
+    return route('course.index');
 });
 
 Route::get('/order', function () {
