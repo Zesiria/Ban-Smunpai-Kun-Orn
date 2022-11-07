@@ -15,15 +15,15 @@
         <li><a href="/employees">พนักงาน</a></li>
     </ul>
 
-    @if(!Auth::check())
+    @if(!Session::get('authenticated_user'))
     <div class="flex justify-end space-x-10 underline">
         <a href="login" >เข้าสู่ระบบ</a>
-        <a href="register">สมัครเข้าใช้การ</a>
+        <a href="register">สมัครเข้าใช้งาน</a>
     </div>
 
     @else
     <div class="flex justify-end space-x-10 underline">
-        สวัสดี คุณ {{ Auth::user()->name }}
+        สวัสดี คุณ {{ Session::get('authenticated_user')->customer_name }}
         <a href="">ออกจากระบบ</a>
     </div>
     @endif
