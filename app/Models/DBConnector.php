@@ -93,13 +93,13 @@ class DBConnector extends Model
         return json_decode(json_encode($employees), true);
     }
 
-    public function addEmployee($employee_name, $email, $password, $phone_number){
-        return DB::insert("INSERT INTO EMPLOYEE(employee_name, email, password, phone_number) VALUES('{$employee_name}','{$email}','{$password}','{$phone_number}')");
+    public function addEmployee($employee_name, $email, $phone_number){
+        return DB::insert("INSERT INTO EMPLOYEE(employee_name, email, phone_number) VALUES('{$employee_name}','{$email}','{$phone_number}')");
     }
 
-    public function updateEmployee($employee_id, $employee_name, $email, $password, $phone_number){
+    public function updateEmployee($employee_id, $employee_name, $email, $phone_number){
         return DB::update("UPDATE EMPLOYEE SET employee_name='{$employee_name}',
-                email='{$email}', password='{$password}', phone_number='{$phone_number}'
+                email='{$email}', phone_number='{$phone_number}'
                 WHERE employee_id = {$employee_id}");
     }
 

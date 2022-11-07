@@ -37,20 +37,23 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'employee_name' => ['min:2', 'max:30', 'string', 'required'],
-            'password' => ['min:2', 'max:20', 'string' , 'required'],
             'email' => ['min:5','email','max:30','required','string'],
             'phone_number' => ['string','required'],
         ]);
 
         $employee = $request->employee_name;
         $email = $request->email;
-        $password = $request->password;
         $phone_number = $request->phone_number;
 
         $dbConnector = new DBConnector();
-        $dbConnector->addEmployee($employee, $email, $password, $phone_number);
+        if($dbConnector->addEmployee($employee, $email, $phone_number)){
+            return redirect('/employee');
+        }
+        return redirect('/add_menu/employee');
+
     }
 
     /**
