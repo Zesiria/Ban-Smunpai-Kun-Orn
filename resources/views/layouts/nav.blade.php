@@ -12,7 +12,7 @@
         <li><a href="/home">หน้าหลัก</a></li>
         <li><a href="{{ route('course.index') }}">บริการ</a></li>
         <li><a href="/order">รายการของคุณ</a></li>
-        <li><a href="/employees">พนักงาน</a></li>
+        <li><a href="/employee">พนักงาน</a></li>
     </ul>
 
     @if(!Session::get('authenticated_user'))
@@ -20,12 +20,7 @@
         <a href="login" >เข้าสู่ระบบ</a>
         <a href="register">สมัครเข้าใช้งาน</a>
     </div>
-    @elseif(Session::get('role_user') == 'Manager')
-    <div class="flex justify-end space-x-10 underline">
-        สวัสดี คุณ {{ Session::get('authenticated_user')->manager_name }}
-        <a href="{{ route('logout') }}">ออกจากระบบ</a>
-    </div>
-    @elseif(Session::get('role_user') == 'Customer')
+    @else
     <div class="flex justify-end space-x-10 underline">
         สวัสดี คุณ {{ Session::get('authenticated_user')->customer_name }}
         <a href="{{ route('logout') }}">ออกจากระบบ</a>

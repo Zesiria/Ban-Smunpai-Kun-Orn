@@ -12,22 +12,14 @@
         <li><a href="/home">หน้าหลัก</a></li>
         <li><a href="/menuadd">เมนูเพื่ม</a></li>
         <li><a href="/serviceorder">รายการคิวลูกค้า</a></li>
-        <li><a href="/employees">พนักงาน</a></li>
+        <li><a href="/employee">พนักงาน</a></li>
         <li><a href="/material">วัตถุดิบ</a></li>
         <li><a href="/tool">อุปกรณ์</a></li>
-        <li><a href="/tool">บริการ</a></li>
+        <li><a href="{{ route('course.index') }}">บริการ</a></li>
     </ul>
 
-    @if(!Auth::check())
     <div class="flex justify-end space-x-10 underline">
-        <a href="login" >เข้าสู่ระบบ</a>
-        <a href="register">สมัครเข้าใช้การ</a>
+        สวัสดี คุณ {{ Session::get('authenticated_user')->manager_name }}
+        <a href="{{ route('logout') }}">ออกจากระบบ</a>
     </div>
-
-    @else
-    <div class="flex justify-end space-x-10 underline">
-        สวัสดี คุณ {{ Auth::user()->name }}
-        <a href="">ออกจากระบบ</a>
-    </div>
-    @endif
 </nav>

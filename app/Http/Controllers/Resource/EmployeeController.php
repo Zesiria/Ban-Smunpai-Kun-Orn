@@ -16,7 +16,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $dbConnector = new DBConnector();
-        return $dbConnector->getEmployee();
+        return view('employees',[ 'employees' => $dbConnector->getEmployee()]);
     }
 
     /**
