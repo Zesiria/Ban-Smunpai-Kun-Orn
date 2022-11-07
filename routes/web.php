@@ -37,13 +37,12 @@ Route::get('/payment', function () {
     return view('payment');
 });
 
-//Route::get('/login', function () {
-//    return route('customer-login.create');
-//});
-
 Route::get('/register', function (){
     return route('customer-register.create');
 });
+
+
+Route::get('/logout', [\App\Http\Controllers\AuthCustomer\CustomerLoginAuthController::class, 'logout']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

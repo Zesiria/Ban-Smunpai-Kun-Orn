@@ -9,6 +9,7 @@ use App\Models\DBConnector;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CustomerLoginAuthController extends Controller
 {
@@ -42,13 +43,9 @@ class CustomerLoginAuthController extends Controller
         return redirect('/home');
     }
 
-    public function destroy(Request $request)
+    public function logout()
     {
-        Auth::guard('customer')->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
+        Session::forget('authenticated_user');
 
         return redirect('/home');
     }

@@ -24,7 +24,7 @@
     @else
     <div class="flex justify-end space-x-10 underline">
         สวัสดี คุณ {{ Session::get('authenticated_user')->customer_name }}
-        <a href="">ออกจากระบบ</a>
+        <a href="{{ route('') }}">ออกจากระบบ</a>
     </div>
     @endif
 </nav>
