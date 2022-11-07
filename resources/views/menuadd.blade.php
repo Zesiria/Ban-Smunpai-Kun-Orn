@@ -2,21 +2,18 @@
 
 @section('content')
     <div>
-        <select name="type" id="type">
-            <option $value="null">เลือกประเภท</option>
-            <option $value="employee">พนักงาน</option>
-            <option $value="tool">อุปกรณ์</option>
-            <option $value="material">วัตถุดิบ</option>
-            <option $value="course">บริการ</option>
-          </select>
-        @if($value == "employee")
+        <a href="/menu_add/employee">พนักงาน</a>
+        <a href="/menu_add/tool">อุปกรณ์</a>
+        <a href="/menu_add/material">วัตถุดิบ</a>
+        <a href="/menu_add/course">บริการ</a>
+        @if($mode == "employee")
             @include('layouts.addemployee')
-        @elseif($value == "tool")
+        @elseif($mode == "tool")
             @include('layouts.addtool')
-        @elseif($value == "material")
+        @elseif($mode == "material")
             @include('layouts.addmaterial')
-        @else
+        @elseif($mode == "course")
             @include('layouts.addcourse')
         @endif
     </div>
-@endsection 
+@endsection

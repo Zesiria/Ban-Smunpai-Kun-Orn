@@ -29,8 +29,17 @@ Route::get('/order', function () {
     return view('order');
 });
 
-Route::get('/menuadd', function () {
-    return view('menuadd');
+Route::get('/menu_add/tool', function () {
+    return view('menuadd',['mode' => 'tool']);
+});
+Route::get('/menu_add/material', function () {
+    return view('menuadd',['mode' => 'material']);
+});
+Route::get('/menu_add/employee', function () {
+    return view('menuadd',['mode' => 'employee']);
+});
+Route::get('/menu_add/course', function () {
+    return view('menuadd',['mode' => 'course']);
 });
 
 Route::get('/serviceorder', function () {

@@ -10,7 +10,7 @@
     </div>
     <ul class="flex justify-end space-x-5">
         <li><a href="/home">หน้าหลัก</a></li>
-        <li><a href="/menuadd">เมนูเพื่ม</a></li>
+        <li><a href="/menu_add/course">เมนูเพื่ม</a></li>
         <li><a href="/serviceorder">รายการคิวลูกค้า</a></li>
         <li><a href="/employee">พนักงาน</a></li>
         <li><a href="/material">วัตถุดิบ</a></li>

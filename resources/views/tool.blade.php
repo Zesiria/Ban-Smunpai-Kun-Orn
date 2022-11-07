@@ -4,7 +4,43 @@
     <div>
         <h1>อุปกรณ์</h1>
     </div>
-    @foreach($tools as $tool)
-        {{ $tool['tool_name'] }}
-    @endforeach
+    <table id="tools">
+        <tr>
+            <th>ชื่ออุปกรณ์</th>
+            <th></th>
+        </tr>
+        @foreach($tools as $tool)
+            <tr>
+                <td>{{ $tool['tool_name'] }}</td>
+                <td>
+                    <a href="/tool/{{$tool['tool_id']}}">แก้ไข</a>
+                </td>
+            </tr>
+        @endforeach
+    </table>
 @endsection
+
+<style>
+    #tools {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #tools td, #tools th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #tools tr:nth-child(even){background-color: #f2f2f2;}
+
+    #tools tr:hover {background-color: #ddd;}
+
+    #tools th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+</style>
