@@ -16,7 +16,7 @@ class ToolController extends Controller
     public function index()
     {
         $dbConnector = new DBConnector();
-        return $dbConnector->getTool();
+        return view('tool',['tools' =>  $dbConnector->getTool()]);
     }
 
     /**

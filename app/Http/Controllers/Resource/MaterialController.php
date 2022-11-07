@@ -16,7 +16,7 @@ class MaterialController extends Controller
     public function index()
     {
         $materials = new DBConnector();
-        return $materials->getMaterial();
+        return view('material',['materials' => $materials->getMaterial()]);
     }
 
     /**
