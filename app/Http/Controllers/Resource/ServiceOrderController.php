@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Resource;
 
 use App\Http\Controllers\Controller;
 use App\Models\DBConnector;
+use App\Models\ServiceOrder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ServiceOrderController extends Controller
 {
@@ -41,7 +43,7 @@ class ServiceOrderController extends Controller
             'customer_id' => ['required','exists:customers'],
             'employee_id' => ['required','exists:employees'],
             'course_id' => ['required','exists:courses'],
-            'price' => ['min:0', 'max:9999', 'numberic', 'required'],
+            'price' => ['min:0', 'max:9999', 'numeric', 'required'],
             'date_time' => ['required','exists:times']
         ]);
 
@@ -125,5 +127,19 @@ class ServiceOrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cancelServiceOrder($id){
+        $user = Session::get('authenticated_user');
+        if($user != null){
+            $serviceOrder = ServiceOrder::all()->where('service_order_id','=', $id)->first();
+            if($serviceOrder->customer_id == $user->customer_id) {
+                $serviceOrder->status = 0;
+                $connector = new DBConnector();
+                $connector->updateStatusServiceOrder($serviceOrder->service_order_id, 0);
+                $connector->updateQueue($serviceOrder->date_time, $serviceOrder->employee_id, 1);
+                return redirect('/home');
+            }
+        }
     }
 }
