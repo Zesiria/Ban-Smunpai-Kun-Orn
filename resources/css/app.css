@@ -15,6 +15,11 @@
   border-radius: 10px;
 }
 
+.cancelButton {
+  background-color: red;
+  border-radius: 10px;
+}
+
 .rectangle {
   height: 140px;
   width: 100%;

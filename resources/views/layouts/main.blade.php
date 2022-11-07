@@ -8,7 +8,7 @@
     @vite('resources/css/app.css','resources/scss/app.scss', 'resources/js/app.js')
 </head>
 <body class="min-h-screen backgroundHome">
-    @include('layouts.nav')
+    @include('layouts.adminnav')
 
     <div class="mx-auto max-w-6xl">
         @yield('content')
