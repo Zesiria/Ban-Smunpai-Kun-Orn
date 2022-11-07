@@ -40,6 +40,7 @@ class DropAllTableCommand extends Command
         DB::statement("DROP TABLE EMPLOYEE");
         DB::statement("DROP TABLE CUSTOMER");
         DB::statement("DROP TABLE COURSE");
+        DB::statement("DROP TABLE MANAGER");
         return Command::SUCCESS;
     }
 }

@@ -42,7 +42,7 @@ Route::get('/register', function (){
 });
 
 
-Route::get('/logout', [\App\Http\Controllers\AuthCustomer\CustomerLoginAuthController::class, 'logout']);
+Route::get('/logout', [\App\Http\Controllers\AuthUser\UserLoginAuthController::class, 'logout']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -50,8 +50,8 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('customer-register', \App\Http\Controllers\AuthCustomer\CustomerRegisterAuthController::class);
-Route::resource('customer-login', \App\Http\Controllers\AuthCustomer\CustomerLoginAuthController::class);
+Route::resource('customer-register', \App\Http\Controllers\AuthUser\UserRegisterAuthController::class);
+Route::resource('customer-login', \App\Http\Controllers\AuthUser\UserLoginAuthController::class);
 Route::resource('course', \App\Http\Controllers\Resource\CourseController::class);
 Route::resource('customer', \App\Http\Controllers\Resource\CustomerController::class);
 Route::resource('employee', \App\Http\Controllers\Resource\EmployeeController::class);

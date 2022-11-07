@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Customer;
+use App\Models\Manager;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
-class CustomerLoginRequest extends FormRequest
+class UserLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -38,8 +39,14 @@ class CustomerLoginRequest extends FormRequest
     public function authenticate()
     {
         $customer = Customer::all()->where('email', '=',$this->get('email'))->first();
-        if($customer->password == $this->get('password')){
+        $manager = Manager::all()->where('email','=',$this->get('email'))->first();
+        if($customer != null && $customer->password == $this->get('password')){
             Session::put('authenticated_user', $customer);
+            Session::put('role_user', 'Customer');
+        }
+        else if($manager != null && $manager->password == $this->get('password')){
+            Session::put('authenticated_user', $manager);
+            Session::put('role_user', 'Manager');
         }
         else{
             throw ValidationException::withMessages([

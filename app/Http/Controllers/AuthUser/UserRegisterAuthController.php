@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\AuthCustomer;
+namespace App\Http\Controllers\AuthUser;
 
 use App\Http\Controllers\Controller;
 use App\Models\DBConnector;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 
-class CustomerRegisterAuthController extends Controller
+class UserRegisterAuthController extends Controller
 {
 
     public function __construct()

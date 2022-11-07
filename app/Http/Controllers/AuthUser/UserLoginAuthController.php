@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\AuthCustomer;
+namespace App\Http\Controllers\AuthUser;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Requests\CustomerLoginRequest;
+use App\Http\Requests\UserLoginRequest;
 use App\Models\DBConnector;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class CustomerLoginAuthController extends Controller
+class UserLoginAuthController extends Controller
 {
     public function __construct()
     {
@@ -36,7 +36,7 @@ class CustomerLoginAuthController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(CustomerLoginRequest $request)
+    public function store(UserLoginRequest $request)
     {
         $request->authenticate();
 
