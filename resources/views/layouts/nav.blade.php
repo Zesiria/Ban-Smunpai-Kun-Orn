@@ -15,16 +15,20 @@
         <li><a href="/employees">พนักงาน</a></li>
     </ul>
 
-    @if(!Auth::check())
+    @if(!Session::get('authenticated_user'))
     <div class="flex justify-end space-x-10 underline">
         <a href="login" >เข้าสู่ระบบ</a>
-        <a href="register">สมัครเข้าใช้การ</a>
+        <a href="register">สมัครเข้าใช้งาน</a>
     </div>
-
-    @else
+    @elseif(Session::get('role_user') == 'Manager')
     <div class="flex justify-end space-x-10 underline">
-        สวัสดี คุณ {{ Auth::user()->name }}
-        <a href="">ออกจากระบบ</a>
+        สวัสดี คุณ {{ Session::get('authenticated_user')->manager_name }}
+        <a href="{{ route('logout') }}">ออกจากระบบ</a>
+    </div>
+    @elseif(Session::get('role_user') == 'Customer')
+    <div class="flex justify-end space-x-10 underline">
+        สวัสดี คุณ {{ Session::get('authenticated_user')->customer_name }}
+        <a href="{{ route('logout') }}">ออกจากระบบ</a>
     </div>
     @endif
 </nav>

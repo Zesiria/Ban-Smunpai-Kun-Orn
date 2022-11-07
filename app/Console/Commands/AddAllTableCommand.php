@@ -50,11 +50,9 @@ class AddAllTableCommand extends Command
 
         DB::statement("CREATE TABLE EMPLOYEE (
             employee_id INT(4) AUTO_INCREMENT,
-        	employee_name VARCHAR(30) NOT NULL,
-            password VARCHAR(20) NOT NULL,
+	        employee_name VARCHAR(30) NOT NULL,
             email VARCHAR(30) NOT NULL,
             phone_number CHAR(10) NOT NULL,
-            role INT(1) NOT NULL DEFAULT 0,
 
             PRIMARY KEY(employee_id));"
         );
@@ -150,6 +148,17 @@ class AddAllTableCommand extends Command
             FOREIGN KEY(course_id) REFERENCES COURSE(course_id) ON DELETE CASCADE);"
         );
 
+        DB::statement("CREATE TABLE MANAGER (
+            manager_id INT(4) AUTO_INCREMENT,
+        	manager_name VARCHAR(30) NOT NULL,
+            password VARCHAR(20) NOT NULL,
+            email VARCHAR(30) NOT NULL,
+            phone_number CHAR(10) NOT NULL,
+
+            PRIMARY KEY(manager_id));"
+        );
+
+        DB::insert("INSERT INTO MANAGER(manager_name, password, email, phone_number) VALUES('สมหญิง วิเชียรชาญ','somyingnaka','somyingnaka@em.com','0812003415')");
         return Command::SUCCESS;
     }
 }
