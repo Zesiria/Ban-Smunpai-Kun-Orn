@@ -15,8 +15,16 @@
         <li><a href="/employee">พนักงาน</a></li>
     </ul>
 
+    @if(!Auth::check())
     <div class="flex justify-end space-x-10 underline">
         <a href="login" >เข้าสู่ระบบ</a>
         <a href="register">สมัครเข้าใช้การ</a>
     </div>
+
+    @else
+    <div class="flex justify-end space-x-10 underline">
+        สวัสดี คุณ {{ Auth::user()->name }}
+        <a href="">ออกจากระบบ</a>
+    </div>
+    @endif
 </nav>

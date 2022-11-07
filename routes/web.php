@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('home');
-});
+})->name('homepage');
 
 Route::get('/service', function () {
     return route('course.index');
@@ -37,8 +37,12 @@ Route::get('/payment', function () {
     return view('payment');
 });
 
-Route::get('/login', function () {
-    return view('login');
+//Route::get('/login', function () {
+//    return route('customer-login.create');
+//});
+
+Route::get('/register', function (){
+    return route('customer-register.create');
 });
 
 Route::get('/dashboard', function () {
@@ -47,6 +51,8 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+Route::resource('customer-register', \App\Http\Controllers\AuthCustomer\CustomerRegisterAuthController::class);
+Route::resource('customer-login', \App\Http\Controllers\AuthCustomer\CustomerLoginAuthController::class);
 Route::resource('course', \App\Http\Controllers\Resource\CourseController::class);
 Route::resource('customer', \App\Http\Controllers\Resource\CustomerController::class);
 Route::resource('employee', \App\Http\Controllers\Resource\EmployeeController::class);
