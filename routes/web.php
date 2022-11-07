@@ -29,6 +29,14 @@ Route::get('/order', function () {
     return view('order');
 });
 
+Route::get('/menuadd', function () {
+    return view('menuadd');
+});
+
+Route::get('/serviceorder', function () {
+    return view('serviceorder');
+});
+
 Route::get('/employees', function () {
     return view('employees');
 });

@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="space-y-10 mt-5">
-        @include('layouts.employeeshow')
-        @include('layouts.employeeshow')
-        @include('layouts.employeeshow')
+        @include('layouts.cardemployee')
+        @include('layouts.cardemployee')
+        @include('layouts.cardemployee')
     </div>
 
 @endsection
