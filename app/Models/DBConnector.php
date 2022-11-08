@@ -104,12 +104,18 @@ class DBConnector extends Model
     }
 
     public function getTime(){
-        $times = DB::select("SELECT * FROM TIME");
+        $time = new Time();
+        $time->fetchTable();
+        $times = DB::select("SELECT * FROM TIME WHERE date_time > CURDATE()+1");
         return json_decode(json_encode($times),1);
     }
 
     public function addTime($date_time){
         return DB::insert("INSERT INTO TIME(date_time) VALUE('{$date_time}')");
+    }
+
+    public function findTime($date_time){
+        return DB::select("SELECT * FROM TIME WHERE date_time LIKE '{$date_time}' LIMIT 1");
     }
 
     public function getServiceOrder(){
@@ -124,8 +130,12 @@ class DBConnector extends Model
 
     public function updateServiceOrder($service_order_id, $customer_id, $course_id, $employee_id, $price, $date_time){
         return DB::update("UPDATE SERVICE_ORDER SET customer_id = {$customer_id}, course_id = {$course_id},
-                                employee_id = {$employee_id}, price ={$price}, date_time = '{$date_time}')
-                                WHERE service_order_id = $service_order_id");
+                                employee_id = {$employee_id}, price ={$price}, date_time = '{$date_time}'
+                                WHERE service_order_id = {$service_order_id}");
+    }
+
+    public function updateStatusServiceOrder($service_order_id, $status){
+        return DB::update("UPDATE SERVICE_ORDER SET status = {$status} WHERE service_order_id = {$service_order_id}");
     }
 
     // Pivot Table
@@ -139,10 +149,8 @@ class DBConnector extends Model
                                 ({$employee_id},'{$date_time}')");
     }
 
-    public function updateQueue($employee_id, $date_time, $is_cancel){
-        return DB::insert("UPDATE QUEUE SET
-                                is_cancel = {$is_cancel}
-                                WHERE employee_id = {$employee_id} AND date_time = {$date_time}");
+    public function updateQueue($date_time, $employee_id, $status){
+        return DB::update("UPDATE QUEUE SET is_cancel = {$status} WHERE date_time = '{$date_time}' AND employee_id = {$employee_id}");
     }
 
     public function getEmployeeUsed(){
@@ -190,5 +198,17 @@ class DBConnector extends Model
     public function addCourseRequired($course_id, $tool_id){
         return DB::insert("INSERT INTO COURSE_REQUIRED(course_id, tool_id) VALUES
                                 ({$course_id},{$tool_id})");
+    }
+
+    public function getFreeEmployee($date_time){
+        $employees = DB::select("Select * FROM EMPLOYEE where employee_id not in
+        (SELECT employee_id from QUEUE where QUEUE.date_time in '{$date_time}') OR
+        employee_id in (SELECT employee_id FROM QUEUE WHERE QUEUE.date_time = '{$date_time}' AND QUEUE.is_cancel = 1)
+        ");
+        return json_decode(json_encode($employees),1);
+    }
+
+    public function fetchTime(){
+
     }
 }

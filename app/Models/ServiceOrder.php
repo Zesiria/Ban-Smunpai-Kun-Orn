@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceOrder extends Model
 {
     use HasFactory;
+
+    protected $table = "SERVICE_ORDER";
 }
