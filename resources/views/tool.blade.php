@@ -2,7 +2,8 @@
 
 @section('content')
     <div>
-        <h1>อุปกรณ์</h1>
+        <h1>อุปกรณ์ทั้งหมด</h1>
+        @include('layouts.cardtool',['tools' => $tools])
     </div>
     <table id="tools">
         <tr>

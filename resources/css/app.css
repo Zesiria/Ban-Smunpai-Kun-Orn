@@ -20,6 +20,11 @@
   border-radius: 10px;
 }
 
+.submitButton {
+  background-color: #42855B;
+  border-radius: 10px;
+}
+
 .rectangle {
   height: 140px;
   width: 100%;
