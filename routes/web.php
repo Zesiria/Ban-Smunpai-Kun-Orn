@@ -42,10 +42,6 @@ Route::get('/menu_add/course', function () {
     return view('menuadd',['mode' => 'course']);
 });
 
-Route::get('/serviceorder', function () {
-    return view('serviceorder');
-});
-
 Route::get('/employees', function () {
     return view('employees');
 });
@@ -69,8 +65,10 @@ require __DIR__.'/auth.php';
 
 Route::get('/cancel-service-order/{service_order}',[\App\Http\Controllers\Resource\ServiceOrderController::class, 'cancelServiceOrder'])
     ->name('service_order.cancel');
-Route::get('paid-service-order/{service_order}',[\App\Http\Controllers\Resource\ServiceOrderController::class, 'paidServiceOrder'])
+Route::get('/paid-service-order/{service_order}',[\App\Http\Controllers\Resource\ServiceOrderController::class, 'paidServiceOrder'])
     ->name('service_order.paid');
+Route::get('/done-service-order/{service_order}',[\App\Http\Controllers\Resource\ServiceOrderController::class, 'doneServiceOrder'])
+    ->name('service_order.done');
 
 Route::resource('customer-register', \App\Http\Controllers\AuthUser\UserRegisterAuthController::class);
 Route::resource('customer-login', \App\Http\Controllers\AuthUser\UserLoginAuthController::class);

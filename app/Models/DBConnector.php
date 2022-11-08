@@ -207,8 +207,4 @@ class DBConnector extends Model
         ");
         return json_decode(json_encode($employees),1);
     }
-
-    public function fetchTime(){
-
-    }
 }

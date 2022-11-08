@@ -18,7 +18,7 @@ class ServiceOrderController extends Controller
     public function index()
     {
         $dbConnector = new DBConnector();
-        return $dbConnector->getServiceOrder();
+        return view('serviceorder', ['service_orders' => $dbConnector->getServiceOrder()]);
     }
 
     /**
@@ -152,6 +152,17 @@ class ServiceOrderController extends Controller
                 $connector->updateQueue($serviceOrder->date_time, $serviceOrder->employee_id, 1);
                 return redirect('/home');
             }
+        }
+    }
+
+    public function doneServiceOrder($id){
+        $serviceOrder = ServiceOrder::all()->where('service_order_id','=', $id)->first();
+        if(Session::get('role_user') == 'Manager' && $serviceOrder->status != 3) {
+            $serviceOrder->status = 0;
+            $connector = new DBConnector();
+            $connector->updateStatusServiceOrder($serviceOrder->service_order_id, 0);
+            $connector->updateQueue($serviceOrder->date_time, $serviceOrder->employee_id, 1);
+            return redirect('/home');
         }
     }
 }
