@@ -23,7 +23,7 @@
                     จ่ายเงินมัดจำ
                 </a>
                 <a href="{{ 'cancel-service-order/' . $service_order['service_order_id'] }}">
-                    จ่ายเงินมัดจำ
+                    ยกเลิกจอง
                 </a>
             </div>
         </form>

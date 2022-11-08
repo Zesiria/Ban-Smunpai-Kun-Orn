@@ -22,7 +22,7 @@
     </div>
     @if(!(Session::get('role_user') == 'Manager'))
     <div class="flex justify-center">
-        <button class="bookNowButton m-10">
+        <button onclick="{{ redirect('') }}" class="bookNowButton m-10">
             <p class="m-4 font-semibold text-white mr-20 ml-20">จองคิว</p>
         </button>
     </div>
