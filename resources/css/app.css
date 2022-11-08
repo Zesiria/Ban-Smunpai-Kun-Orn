@@ -25,6 +25,11 @@
   border-radius: 10px;
 }
 
+.addButton {
+  background-color: #42855B;
+  border-radius: 10px;
+}
+
 .rectangle {
   height: 140px;
   width: 100%;
