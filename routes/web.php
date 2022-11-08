@@ -78,3 +78,4 @@ Route::resource('employee', \App\Http\Controllers\Resource\EmployeeController::c
 Route::resource('tool', \App\Http\Controllers\Resource\ToolController::class);
 Route::resource('material', \App\Http\Controllers\Resource\MaterialController::class);
 Route::resource('service_order', \App\Http\Controllers\Resource\ServiceOrderController::class);
+Route::resource('order', \App\Http\Controllers\OrderController::class);

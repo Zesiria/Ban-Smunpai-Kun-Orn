@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Resource;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\DBConnector;
 use App\Models\ServiceOrder;
 use Illuminate\Http\Request;
@@ -45,21 +46,23 @@ class ServiceOrderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'customer_id' => ['required','exists:customers'],
-            'employee_id' => ['required','exists:employees'],
-            'course_id' => ['required','exists:courses'],
-            'price' => ['min:0', 'max:9999', 'numeric', 'required'],
-            'date_time' => ['required','exists:times']
+            'employee_id' => ['required','exists:EMPLOYEE'],
+            'course_id' => ['required','exists:COURSE'],
+            'date_time' => ['required','exists:TIME']
         ]);
 
-        $customer_id = $request->customer_id;
-        $course_id = $request->course_id;
+        $customer_id = Session::get('authenticated_user')->customer_id;
+        $course_name = Course::all()->where('course_id', '=', $request->course_id)->first()->course_name;
         $employee_id = $request->employee_id;
-        $price = $request->price;
+        $price = Course::all()->where('course_id', '=', $request->course_id)->first()->course_price;
         $date_time = $request->date_time;
 
         $dbConnector = new DBConnector();
-        $dbConnector->addServiceOrder($customer_id,$course_id,$employee_id,$price,$date_time);
+        $dbConnector->addServiceOrder($customer_id,$course_name,$employee_id,$price,$date_time);
+
+        $dbConnector->addQueue($employee_id,$date_time);
+
+        return redirect('/service_order');
     }
 
     /**
@@ -141,7 +144,7 @@ class ServiceOrderController extends Controller
             if($serviceOrder->customer_id == $user->customer_id) {
                 $connector = new DBConnector();
                 $connector->updateStatusServiceOrder($serviceOrder->service_order_id, 2);
-                return redirect('/home');
+                return redirect('/service_order');
             }
         }
     }
@@ -155,7 +158,7 @@ class ServiceOrderController extends Controller
                 $connector = new DBConnector();
                 $connector->updateStatusServiceOrder($serviceOrder->service_order_id, 0);
                 $connector->updateQueue($serviceOrder->date_time, $serviceOrder->employee_id, 1);
-                return redirect('/home');
+                return redirect('/service_order');
             }
         }
     }
@@ -163,11 +166,9 @@ class ServiceOrderController extends Controller
     public function doneServiceOrder($id){
         $serviceOrder = ServiceOrder::all()->where('service_order_id','=', $id)->first();
         if(Session::get('role_user') == 'Manager' && $serviceOrder->status != 3) {
-            $serviceOrder->status = 0;
             $connector = new DBConnector();
-            $connector->updateStatusServiceOrder($serviceOrder->service_order_id, 0);
-            $connector->updateQueue($serviceOrder->date_time, $serviceOrder->employee_id, 1);
-            return redirect('/home');
+            $connector->updateStatusServiceOrder($serviceOrder->service_order_id, 3);
+            return redirect('/service_order');
         }
     }
 }

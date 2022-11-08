@@ -18,13 +18,14 @@
                     <h1>สถานะ : ให้บริการ</h1>
                 @endif
             </div>
-            @if($service_order['status'] == 1)
-                <div>
-                    <a href="{{ 'paid-service-order/' . $service_order['service_order_id'] }}">
-                        จ่ายเงินมัดจำ
-                    </a>
-                </div>
-            @endif
+            <div>
+                <a href="{{ 'paid-service-order/' . $service_order['service_order_id'] }}">
+                    จ่ายเงินมัดจำ
+                </a>
+                <a href="{{ 'cancel-service-order/' . $service_order['service_order_id'] }}">
+                    ยกเลิกจอง
+                </a>
+            </div>
         </form>
         @elseif($service_order['status'] == 2)
             <form method="GET" action="{{ redirect('/cancel-service-order/'.$service_order['service_order_id']) }}">
@@ -44,11 +45,9 @@
                         <h1>สถานะ : ให้บริการ</h1>
                     @endif
                 </div>
-                @if($service_order['status'] == 2)
-                    <div>
-                        <button type="submit" class="cancelButton">ยกเลิก</button>
-                    </div>
-                @endif
+                    <a href="{{ 'cancel-service-order/' . $service_order['service_order_id'] }}">
+                        ยกเลิกจอง
+                    </a>
             </form>
         @endif
     @endforeach
