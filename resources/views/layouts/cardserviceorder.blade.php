@@ -1,6 +1,6 @@
 <div>
     @foreach($service_orders as $service_order)
-        <form method="GET" action="{{ redirect('/done-service-order/'.$service_order['service_order_id']) }}">
+        <form method="GET" action="">
         <div>
             <h1>รหัส Service_order : {{ $service_order['service_order_id'] }}</h1>
             <h1>Course : {{ $service_order['course_name'] }}</h1>
@@ -19,7 +19,9 @@
         </div>
             @if($service_order['status'] == 2)
             <div>
-                <button type="submit" class="submitButton">ให้บริการ</button>
+                <a href="{{ '/done-service-order/'.$service_order['service_order_id'] }}"
+                   type="submit" class="submitButton">ให้บริการ
+                </a>
             </div>
             @endif
         </form>

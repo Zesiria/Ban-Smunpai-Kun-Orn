@@ -129,9 +129,9 @@ class DBConnector extends Model
         return json_decode(json_encode($serviceOrders),1);
     }
 
-    public function addServiceOrder($customer_id, $course_id, $employee_id, $price, $date_time){
-        return DB::insert("INSERT INTO SERVICE_ORDER(customer_id, course_id, employee_id, price, date_time)
-        VALUES({$customer_id},{$course_id},{$employee_id},{$price},'{$date_time}')");
+    public function addServiceOrder($customer_id, $course_name, $employee_id, $price, $date_time){
+        return DB::insert("INSERT INTO SERVICE_ORDER(customer_id, course_name, employee_id, price, date_time)
+        VALUES({$customer_id},'{$course_name}',{$employee_id},{$price},'{$date_time}')");
     }
 
     public function updateServiceOrder($service_order_id, $customer_id, $course_id, $employee_id, $price, $date_time){
