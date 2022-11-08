@@ -11,58 +11,63 @@
 
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-10">พนักงาน</h1>
+    <h1 class="text-2xl font-bold m-10">พนักงาน</h1>
     <table id="employees_id">
-        <tr>
-            <th>ชื่อพนักงาน</th>
-            <th>Email</th>
-            <th>Tel.</th>
-            @if(Session::get('authenticated_user') && Session::get('role_user') == 'Manager')
-            <th></th>
-            @else
-                        
-            @endif
-            
-        </tr>
-        @foreach($employees as $employee)
-            <tr >
-                <td>{{ $employee['employee_name'] }}</td>
-                <td>{{$employee['email']}}</td>
-                <td>{{$employee['phone_number']}}</td>
+    @if(Session::get('authenticated_user') && Session::get('role_user') == 'Customer')
+        <div>
+            @foreach($employees as $employee)
+                <div class="flex m-5 card">
+                    <img class="rounded-full" src="images/employee.jpeg" alt="profile" height="" width="150" >
+                    <div class="my-auto text-xl font-semibold ml-10">
+                        <div class="flex">
+                            <h1>Name :</h1>
+                            <p>{{$employee['employee_name'] }}</p>
+                        </div>
+                        <div class="flex">
+                            <h1>Email :</h1>
+                            <p>{{$employee['email']}}</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <h1>Tel. :</h1>
+                            <p>{{$employee['phone_number']}}</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        
+    @else
+        <div>
+            @foreach($employees as $employee)
+                <div class=" m-5 card">
+                    <div class="flex flex-between">
+                        <img class="rounded-full" src="images/employee.jpeg" alt="profile" height="" width="150" >
+                        <div class="my-auto text-xl font-semibold ml-10">
+                        <div class="flex">
+                            <h1>Name :</h1>
+                            <p>{{$employee['employee_name'] }}</p>
+                        </div>
+                        <div class="flex">
+                            <h1>Email :</h1>
+                            <p>{{$employee['email']}}</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <h1>Tel. :</h1>
+                            <p>{{$employee['phone_number']}}</p>
+                        </div>
+                        <div class="my-auto text-center m-10 canButton mt-2">
+                            <div class="mr-4 ml-4">
+                                <a href="/editemployee/{{$employee['employee_id']}}">แก้ไข</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
                 
-                    @if(Session::get('authenticated_user') && Session::get('role_user') == 'Manager')
-                        <td>
-                            <a href="/editemployee/{{$employee['employee_id']}}">แก้ไข</a>
-                        </td>
-                    @else
-                        
-                    @endif
-            </tr>
-        @endforeach
-    </table>
+                
+            @endforeach
+        </div>
+
+    @endif
 @endsection
-
-<style>
-    #employees_id {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    #employees_id td, #employees_id th {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-
-    #employees_id tr:nth-child(even){background-color: #f2f2f2;}
-
-    #employees_id tr:hover {background-color: #ddd;}
-
-    #employees_id th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #04AA6D;
-        color: white;
-    }
-</style>

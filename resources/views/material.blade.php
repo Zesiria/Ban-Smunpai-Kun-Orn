@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<h1 class="text-2xl font-bold mb-10">วัตถุดิบ</h1>
+<h1 class="text-2xl font-bold m-10">วัตถุดิบ</h1>
     <table id="material_id">
         <tr>
             <th>ชื่อวัตถุดิบ</th>
@@ -34,7 +34,7 @@
         padding: 8px;
     }
 
-    #material_id tr:nth-child(even){background-color: #f2f2f2;}
+    #material_id tr{background-color: #f2f2f2;}
 
     #material_id tr:hover {background-color: #ddd;}
 

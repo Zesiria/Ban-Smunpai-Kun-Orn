@@ -29,9 +29,6 @@
                             @foreach($employees as $employee)
                                 <option value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
                             @endforeach
-                            <option value="course_1">ผู้ให้บริการ 1</option>
-                            <option value="course_2">ผู้ให้บริการ 2</option>
-                            <option value="course_3">ผู้ให้บริการ 3</option>
                         </select>
                     </div>
                     <button type="submit" class="text-white submitBtn">
