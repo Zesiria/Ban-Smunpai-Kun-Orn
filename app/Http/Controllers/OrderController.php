@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\DBConnector;
+use App\Models\Time;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,12 +16,30 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $time = new Time();
+        $time->fetchTable();
         $connector = new DBConnector();
         $course = $connector->getCourse();
-        $time = $connector->getTime();
+        $times = Time::all()->where('date_time', '>', now()->startOfDay()->addDay())->where('date_time', '<=', now()->startOfDay()->addDays(6));
+        $dates = array();
+        $hours = array();
+        foreach ($times as $time){
+            if(!in_array($time, $dates)){
+                $dates[] = $time;
+            }
+        }
+        for ($j = 8;$j < 16;$j++) {
+            if ($j == 12) {
+                continue;
+            }
+//            $hour = str_pad("".$j,"2","0",STR_PAD_LEFT);
+            $hours[] = $j;
+        }
+
         $employee = $connector->getEmployee();
         return view('order',['courses' => $course,
-            'times' => $time,
+            'dates' => $dates,
+            'hours' => $hours,
             'employees' => $employee]);
     }
 

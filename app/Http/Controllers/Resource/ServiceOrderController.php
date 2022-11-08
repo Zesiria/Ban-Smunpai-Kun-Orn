@@ -48,14 +48,15 @@ class ServiceOrderController extends Controller
         $request->validate([
             'employee_id' => ['required','exists:EMPLOYEE'],
             'course_id' => ['required','exists:COURSE'],
-            'date_time' => ['required','exists:TIME']
+            'date' => ['required'],
+            'time' => ['required']
         ]);
 
         $customer_id = Session::get('authenticated_user')->customer_id;
         $course_name = Course::all()->where('course_id', '=', $request->course_id)->first()->course_name;
         $employee_id = $request->employee_id;
         $price = Course::all()->where('course_id', '=', $request->course_id)->first()->course_price;
-        $date_time = $request->date_time;
+        $date_time = $request->date . " " . $request->time;
 
         $dbConnector = new DBConnector();
         $dbConnector->addServiceOrder($customer_id,$course_name,$employee_id,$price,$date_time);
