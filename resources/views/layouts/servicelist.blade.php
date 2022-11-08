@@ -10,5 +10,6 @@
             <h1>{{ $course['course_price'] }} บาท</h1>
         </div>
     </div>
+    
     @endforeach
 </div>

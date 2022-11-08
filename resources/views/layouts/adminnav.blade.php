@@ -11,7 +11,7 @@
     <ul class="flex justify-end space-x-5 text-[#483838]  font-bold">
         <li><a href="/home">หน้าหลัก</a></li>
         <li><a href="/menu_add/employee">เมนูเพื่ม</a></li>
-        <li><a href="/serviceorder">รายการคิวลูกค้า</a></li>
+        <li><a href="/service_order">รายการคิวลูกค้า</a></li>
         <li><a href="/employee">พนักงาน</a></li>
         <li><a href="/material">วัตถุดิบ</a></li>
         <li><a href="/tool">อุปกรณ์</a></li>

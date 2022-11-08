@@ -17,16 +17,26 @@
             <th>ชื่อพนักงาน</th>
             <th>Email</th>
             <th>Tel.</th>
+            @if(Session::get('authenticated_user') && Session::get('role_user') == 'Manager')
             <th></th>
+            @else
+                        
+            @endif
+            
         </tr>
         @foreach($employees as $employee)
             <tr >
                 <td>{{ $employee['employee_name'] }}</td>
                 <td>{{$employee['email']}}</td>
                 <td>{{$employee['phone_number']}}</td>
-                <td>
-                    <a href="/employee/{{$employee['employee_id']}}">แก้ไข</a>
-                </td>
+                
+                    @if(Session::get('authenticated_user') && Session::get('role_user') == 'Manager')
+                        <td>
+                            <a href="/editemployee/{{$employee['employee_id']}}">แก้ไข</a>
+                        </td>
+                    @else
+                        
+                    @endif
             </tr>
         @endforeach
     </table>

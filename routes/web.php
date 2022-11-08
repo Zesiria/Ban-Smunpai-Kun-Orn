@@ -50,8 +50,24 @@ Route::get('/payment', function () {
     return view('payment');
 });
 
+Route::get('/showemployee', function () {
+    return view('showemployee');
+});
+
 Route::get('/register', function (){
     return route('customer-register.create');
+});
+
+Route::get('/edittool/{tool_id}', function (){
+    return view('edittool');
+});
+
+Route::get('/editmaterial/{material_id}', function (){
+    return view('editmaterial');
+});
+
+Route::get('/editemployee/{employee_id}', function (){
+    return view('editemployee');
 });
 
 

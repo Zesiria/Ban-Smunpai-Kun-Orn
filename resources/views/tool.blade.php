@@ -14,7 +14,7 @@
             <tr>
                 <td>{{ $tool['tool_name'] }}</td>
                 <td>
-                    <a href="/tool/{{$tool['tool_id']}}">แก้ไข</a>
+                    <a href="/edittool/{{$tool['tool_id']}}">แก้ไข</a>
                 </td>
             </tr>
         @endforeach

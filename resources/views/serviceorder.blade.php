@@ -2,8 +2,7 @@
 
 @section('content')
     <div>
-        <h1 class="text-2xl font-bold">คิวการให้บริการ</h1>
-        <h1>คิวการให้บริการ</h1>
+        <h1 class="text-2xl font-bold mb-10">คิวการให้บริการ</h1>
         @if(Session::get('role_user') == 'Customer')
             @include('layouts.cardmyorder',['service_orders' => $service_orders])
         @elseif(Session::get('role_user') == 'Manager')

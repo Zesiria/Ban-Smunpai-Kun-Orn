@@ -15,7 +15,7 @@
                 <td>{{$material['quantity']}}</td>
                 <td>{{$material['minimum_value']}}</td>
                 <td>
-                    <a href="/marterial/{{$material['material_id']}}">แก้ไข</a>
+                    <a href="/editmaterial/{{$material['material_id']}}">แก้ไข</a>
                 </td>
             </tr>
         @endforeach
