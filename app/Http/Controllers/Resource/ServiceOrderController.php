@@ -126,7 +126,19 @@ class ServiceOrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+    }
+
+    public function paidServiceOrder($id){
+        $user = Session::get('authenticated_user');
+        if($user != null){
+            $serviceOrder = ServiceOrder::all()->where('service_order_id','=', $id)->first();
+            if($serviceOrder->customer_id == $user->customer_id) {
+                $connector = new DBConnector();
+                $connector->updateStatusServiceOrder($serviceOrder->service_order_id, 2);
+                return redirect('/home');
+            }
+        }
     }
 
     public function cancelServiceOrder($id){

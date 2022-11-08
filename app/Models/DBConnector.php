@@ -104,12 +104,18 @@ class DBConnector extends Model
     }
 
     public function getTime(){
-        $times = DB::select("SELECT * FROM TIME");
+        $time = new Time();
+        $time->fetchTable();
+        $times = DB::select("SELECT * FROM TIME WHERE date_time > CURDATE()+1");
         return json_decode(json_encode($times),1);
     }
 
     public function addTime($date_time){
         return DB::insert("INSERT INTO TIME(date_time) VALUE('{$date_time}')");
+    }
+
+    public function findTime($date_time){
+        return DB::select("SELECT * FROM TIME WHERE date_time LIKE '{$date_time}' LIMIT 1");
     }
 
     public function getServiceOrder(){
@@ -192,5 +198,17 @@ class DBConnector extends Model
     public function addCourseRequired($course_id, $tool_id){
         return DB::insert("INSERT INTO COURSE_REQUIRED(course_id, tool_id) VALUES
                                 ({$course_id},{$tool_id})");
+    }
+
+    public function getFreeEmployee($date_time){
+        $employees = DB::select("Select * FROM EMPLOYEE where employee_id not in
+        (SELECT employee_id from QUEUE where QUEUE.date_time in '{$date_time}') OR
+        employee_id in (SELECT employee_id FROM QUEUE WHERE QUEUE.date_time = '{$date_time}' AND QUEUE.is_cancel = 1)
+        ");
+        return json_decode(json_encode($employees),1);
+    }
+
+    public function fetchTime(){
+
     }
 }
