@@ -141,7 +141,7 @@ class ServiceOrderController extends Controller
             if($serviceOrder->customer_id == $user->customer_id) {
                 $connector = new DBConnector();
                 $connector->updateStatusServiceOrder($serviceOrder->service_order_id, 2);
-                return redirect('/home');
+                return redirect('/service_order');
             }
         }
     }
@@ -155,7 +155,7 @@ class ServiceOrderController extends Controller
                 $connector = new DBConnector();
                 $connector->updateStatusServiceOrder($serviceOrder->service_order_id, 0);
                 $connector->updateQueue($serviceOrder->date_time, $serviceOrder->employee_id, 1);
-                return redirect('/home');
+                return redirect('/service_order');
             }
         }
     }
@@ -163,11 +163,9 @@ class ServiceOrderController extends Controller
     public function doneServiceOrder($id){
         $serviceOrder = ServiceOrder::all()->where('service_order_id','=', $id)->first();
         if(Session::get('role_user') == 'Manager' && $serviceOrder->status != 3) {
-            $serviceOrder->status = 0;
             $connector = new DBConnector();
-            $connector->updateStatusServiceOrder($serviceOrder->service_order_id, 0);
-            $connector->updateQueue($serviceOrder->date_time, $serviceOrder->employee_id, 1);
-            return redirect('/home');
+            $connector->updateStatusServiceOrder($serviceOrder->service_order_id, 3);
+            return redirect('/service_order');
         }
     }
 }
