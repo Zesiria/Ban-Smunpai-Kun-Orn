@@ -17,9 +17,14 @@
                     </div>
                     <div>
                         <h1 class="text-white">Time</h1>
-                        <select name="date_time" id="cars">
-                            @foreach($times as $time)
-                                <option value="{{ $time['date_time'] }}">{{ $time['date_time'] }}</option>
+                        <select name="date" id="cars">
+                            @foreach($dates as $date)
+                                <option value="{{ date("Y-m-d", strtotime($date->date_time)) }}">{{ date("d-m-Y", strtotime($date->date_time)) }}</option>
+                            @endforeach
+                        </select>
+                        <select name="time" id="cars">
+                            @foreach($hours as $hour)
+                                <option value="{{ $hour . ":00:00" }}">{{ $hour }}</option>
                             @endforeach
                         </select>
                     </div>

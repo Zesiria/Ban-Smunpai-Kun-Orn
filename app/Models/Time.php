@@ -14,7 +14,7 @@ class Time extends Model
 
     public function fetchTable(){
         $connector = new DBConnector();
-        for($i = 1 ;$i < 5;$i++ ){
+        for($i = 1 ;$i < 6;$i++ ){
             $day = Carbon::today()->addDays($i);
             for ($j = 8;$j < 16;$j++){
                 if($j == 12){
