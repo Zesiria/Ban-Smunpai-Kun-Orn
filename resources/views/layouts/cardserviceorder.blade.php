@@ -1,6 +1,6 @@
 <div>
     @foreach($service_orders as $service_order)
-        <form method="GET" action="{{ redirect('/service_order/'.$service_order['service_order_id']) }}">
+        <form method="GET" action="{{ redirect('/done-service-order/'.$service_order['service_order_id']) }}">
         <div>
             <h1>รหัส Service_order : {{ $service_order['service_order_id'] }}</h1>
             <h1>Course : {{ $service_order['course_name'] }}</h1>

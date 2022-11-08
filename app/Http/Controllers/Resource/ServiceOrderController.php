@@ -18,7 +18,12 @@ class ServiceOrderController extends Controller
     public function index()
     {
         $dbConnector = new DBConnector();
-        return view('serviceorder', ['service_orders' => $dbConnector->getServiceOrder()]);
+        if(Session::get('role_user') == 'Customer'){
+            return view('serviceorder', ['service_orders' => $dbConnector->getServiceOrderByCustomerId(Session::get('authenticated_user')->customer_id)]);
+        }
+        if(Session::get('role_user') == 'Manager'){
+            return view('serviceorder', ['service_orders' => $dbConnector->getServiceOrder()]);
+        }
     }
 
     /**

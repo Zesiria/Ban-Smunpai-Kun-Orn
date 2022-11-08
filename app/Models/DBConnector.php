@@ -123,6 +123,12 @@ class DBConnector extends Model
         return json_decode(json_encode($serviceOrders),1);
     }
 
+    public function getServiceOrderByCustomerId($customer_id){
+        $serviceOrders = DB::select("SELECT * FROM SERVICE_ORDER
+        WHERE customer_id = {$customer_id}");
+        return json_decode(json_encode($serviceOrders),1);
+    }
+
     public function addServiceOrder($customer_id, $course_id, $employee_id, $price, $date_time){
         return DB::insert("INSERT INTO SERVICE_ORDER(customer_id, course_id, employee_id, price, date_time)
         VALUES({$customer_id},{$course_id},{$employee_id},{$price},'{$date_time}')");

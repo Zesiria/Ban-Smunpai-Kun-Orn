@@ -11,7 +11,6 @@
     <ul class="flex justify-end space-x-10">
         <li><a href="/home">หน้าหลัก</a></li>
         <li><a href="{{ route('course.index') }}">บริการ</a></li>
-        <li><a href="/order">รายการของคุณ</a></li>
         <li><a href="/employee">พนักงาน</a></li>
     </ul>
 
@@ -22,6 +21,11 @@
     </div>
     @else
     <div class="flex justify-end space-x-10 underline">
+        <lu>
+            <li>
+                <a href="/service_order">รายการของคุณ</a>
+            </li>
+        </lu>
         สวัสดี คุณ {{ Session::get('authenticated_user')->customer_name }}
         <a href="{{ route('logout') }}">ออกจากระบบ</a>
     </div>
