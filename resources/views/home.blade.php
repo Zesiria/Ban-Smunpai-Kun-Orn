@@ -4,8 +4,8 @@
     {{-- <div class="flex mt-10">
         <div>
             @include('layouts.service')
-            @include('layouts.service')  
-            @include('layouts.service')      
+            @include('layouts.service')
+            @include('layouts.service')
         </div>
 
         @include('layouts.location')
@@ -20,11 +20,13 @@
             <h1>เราบริการทุกท่านด้วยหัวใจ</h1>
         </div>
     </div>
+    @if(!(Session::get('role_user') == 'Manager'))
     <div class="flex justify-center">
         <button class="bookNowButton m-10">
             <p class="m-4 font-semibold text-white mr-20 ml-20">จองคิว</p>
         </button>
     </div>
+    @endif
     <div class="grid grid-cols-2 m-20">
         <div class="m-8">
             <h1 class="text-4xl font-semibold text-[#483838]">พบกับบริการของเรา</h1>
@@ -59,7 +61,7 @@
                     <h1 class="font-bold text-center text-[#483838]">EMAIL</h1>
                     <h1 class="font-bold text-center text-white">munpai@gmail.com</h1>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -94,7 +96,7 @@
         </div>
     </div>
 
-        
+
         {{-- <div class="rectangle"></div>    --}}
 
 @endsection
