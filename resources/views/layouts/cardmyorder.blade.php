@@ -6,7 +6,7 @@
             <div class="m-5 text-xl font-semibold text-[#483838]">
                 {{-- <h1>รหัส Service_order : {{ $service_order['service_order_id'] }}</h1> --}}
                 <h1>Course : {{ $service_order['course_name'] }}</h1>
-                <h1>ราคา : {{ $service_order['price'] }} บาท</h1>
+                <h1>ราคา : {{ number_format($service_order['price']) }} บาท</h1>
                 <h1>เวลาที่นัดหมาย : {{ $service_order['date_time'] }}</h1>
                 <h1>จองเมื่อ : {{ $service_order['created_at'] }}</h1>
                 @if($service_order['status'] == 0)

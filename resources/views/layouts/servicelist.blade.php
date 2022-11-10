@@ -8,7 +8,7 @@
             <h1 class="font-bold">Course : {{ $course['course_name'] }}</h1>
             <h1 class="font-bold">รายละเอียด</h1>
             <p>{{ $course['course_description'] }}</p>
-            <h1 class="font-bold mt-10">ค่าบริการ {{ $course['course_price'] }} บาท</h1>
+            <h1 class="font-bold mt-10">ค่าบริการ {{ number_format($course['course_price']) }} บาท</h1>
         </div>
     </div>
     

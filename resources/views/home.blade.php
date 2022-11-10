@@ -93,7 +93,7 @@
             <p class="text-[#483838]">เลือกนักบำบัดของเราและจองบริการนวดเพื่อสุขภาพที่ดีของตัวคุณ การนวดด้วยใจของเราจะโน้มน้าวใจคุณ</p>
         </div>
         <div class="flex justify-center">
-            <img class="imgPost" src="/images/spa.png" alt="Miracle Work" height="" width="300">
+            <img class="imgPost" src="/images/wait.jpeg" alt="Miracle Work" height="" width="300">
         </div>
     </div>
 
