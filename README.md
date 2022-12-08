@@ -14,6 +14,10 @@ This application is made for 01418321 System Analysis and Design Course using La
     ```
    sail up -d
    ```
+4. Run vite
+    ```
+    sail npm run dev
+    ```
 
 ## Contributor
 1. Chatchawan Mueangmai (6310400959)
