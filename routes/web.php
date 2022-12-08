@@ -14,5 +14,84 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
+
+Route::get('/home', function () {
+    return view('home');
+})->name('homepage');
+
+Route::get('/service', function () {
+    return route('course.index');
+});
+
+Route::get('/order', function () {
+    return view('order');
+});
+
+Route::get('/menu_add/tool', function () {
+    return view('menuadd',['mode' => 'tool']);
+});
+Route::get('/menu_add/material', function () {
+    return view('menuadd',['mode' => 'material']);
+});
+Route::get('/menu_add/employee', function () {
+    return view('menuadd',['mode' => 'employee']);
+});
+Route::get('/menu_add/course', function () {
+    return view('menuadd',['mode' => 'course']);
+});
+
+Route::get('/employees', function () {
+    return view('employees');
+});
+
+Route::get('/payment', function () {
+    return view('payment');
+});
+
+Route::get('/showemployee', function () {
+    return view('showemployee');
+});
+
+Route::get('/register', function (){
+    return route('customer-register.create');
+});
+
+Route::get('/edittool/{tool_id}', function (){
+    return view('edittool');
+});
+
+Route::get('/editmaterial/{material_id}', function (){
+    return view('editmaterial');
+});
+
+Route::get('/editemployee/{employee_id}', function (){
+    return view('editemployee');
+});
+
+
+Route::get('/logout', [\App\Http\Controllers\AuthUser\UserLoginAuthController::class, 'logout']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+Route::get('/cancel-service-order/{service_order}',[\App\Http\Controllers\Resource\ServiceOrderController::class, 'cancelServiceOrder'])
+    ->name('service_order.cancel');
+Route::get('/paid-service-order/{service_order}',[\App\Http\Controllers\Resource\ServiceOrderController::class, 'paidServiceOrder'])
+    ->name('service_order.paid');
+Route::get('/done-service-order/{service_order}',[\App\Http\Controllers\Resource\ServiceOrderController::class, 'doneServiceOrder'])
+    ->name('service_order.done');
+
+Route::resource('customer-register', \App\Http\Controllers\AuthUser\UserRegisterAuthController::class);
+Route::resource('customer-login', \App\Http\Controllers\AuthUser\UserLoginAuthController::class);
+Route::resource('course', \App\Http\Controllers\Resource\CourseController::class);
+Route::resource('customer', \App\Http\Controllers\Resource\CustomerController::class);
+Route::resource('employee', \App\Http\Controllers\Resource\EmployeeController::class);
+Route::resource('tool', \App\Http\Controllers\Resource\ToolController::class);
+Route::resource('material', \App\Http\Controllers\Resource\MaterialController::class);
+Route::resource('service_order', \App\Http\Controllers\Resource\ServiceOrderController::class);
+Route::resource('order', \App\Http\Controllers\OrderController::class);
